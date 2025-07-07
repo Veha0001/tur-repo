@@ -16,7 +16,10 @@ termux_step_pre_configure() {
 }
 
 termux_step_make() {
-  CGO_ENABLED=0 go build -ldflags="-s -w -X github.com/homeport/termshot/internal/cmd.version=$TERMUX_PKG_VERSION" -trimpath -o $TERMUX_PKG_SRCDIR/termshot $TERMUX_PKG_SRCDIR/cmd/termshot/main.go
+	CGO_ENABLED=0 go build \
+		-ldflags="-s -w -X github.com/homeport/termshot/internal/cmd.version=$TERMUX_PKG_VERSION" -trimpath \
+		-o $TERMUX_PKG_SRCDIR/termshot \
+		$TERMUX_PKG_SRCDIR/cmd/termshot/main.go
 }
 termux_step_make_install() {
 	install -Dm700 -t "${TERMUX_PREFIX}"/bin "$TERMUX_PKG_SRCDIR"/termshot
